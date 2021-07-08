@@ -13,7 +13,7 @@ CREATE TABLE Persona(
 	colonia VARCHAR(50) NOT NULL,
 	ciudad VARCHAR(50) NOT NULL,
 	codigo_postal VARCHAR(5) NOT NULL,
-	estatus BOOL,
+	estatus BOOL NOT NULL,
 	PRIMARY KEY (id_persona)
 );
 
@@ -29,78 +29,79 @@ CREATE TABLE Empleado(
 );
 
 
-create table cliente(
-id_cliente int not null,
-correo varchar(50),
-num_unico_cliente varchar(50),
-primary key (id_cliente)
+CREATE TABLE Cliente(
+	id_cliente INT NOT NULL,
+	correo VARCHAR(50) NOT NULL,
+	num_unico_cliente VARCHAR(50) NOT NULL,
+	PRIMARY KEY (id_cliente)
 );
 
-create table usuario(
-id_usuario int not null,
-nombre varchar(50),
-contraseña varchar(50),
-rol varchar(50),
-primary key(id_usuario)
+CREATE TABLE Usuario(
+    id_usuario INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    contraseña VARCHAR(50) NOT NULL,
+    rol VARCHAR(50) NOT NULL,
+    PRIMARY KEY(id_usuario)
 );
 
-create table sala(
-id_sala int not null,
-nombre varchar(20) not null,
-descripcion varchar(80) not null,
-fotografia blob,
-estatus bool,
-ruta_fotografia varchar(30),
-primary key (id_sala)
+CREATE TABLE Sala(
+    id_sala INT NOT NULL,
+    nombre VARCHAR(20) NOT NULL,
+    descripcion VARCHAR(80) NOT NULL,
+    fotografia BLOB NOT NULL,
+    estatus BOOL NOT NULL,
+    ruta_fotografia VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id_sala)
 );
 
-create table reservacion(
-id_reservacion int not null,
-fecha date not null,
-estatus varchar(15),
-primary key (id_reservacion)
+CREATE TABLE Reservacion(
+	id_reservacion INT NOT NULL,
+	fecha DATE NOT NULL,
+	estatus VARCHAR(15) NOT NULL,
+	PRIMARY KEY (id_reservacion)
 );
 
-create table horarios(
-id_horario int not null,
-hora_termino time,
-hora_inicio time,
-primary key(id_horario)
+CREATE TABLE Horarios(
+	id_horario INT NOT NULL,
+	hora_termino TIME NOT NULL,
+	hora_inicio TIME NOT NULL,
+	PRIMARY KEY(id_horario)
 );
 
-create table sucursales(
-id_sucursal int not null,
-latitud double,
-longitud double,
-estatus bool,
-primary key (id_sucursal)
+CREATE TABLE Sucursales(
+	id_sucursal INT NOT NULL,
+	latitud DOUBLE NOT NULL,
+	longitud DOUBLE NOT NULL,
+	estatus BOOL NOT NULL,
+	PRIMARY KEY (id_sucursal)
 );
 
-create table servicio(
-id_servicio int not null,
-fecha date not null,
-costo int not null,
-primary key (id_servicio)
+CREATE TABLE Servicio(
+	id_servicio INT NOT NULL,
+	fecha DATE NOT NULL,
+	costo INT NOT NULL,
+	PRIMARY KEY (id_servicio)
 );
 
-create table tratamientos(
-id_tratamientos int not null,
-nombre varchar(20) not null,
-estatus varchar(15),
-descripcion varchar(80) not null,
-primary key (id_tratamientos));
+CREATE TABLE Tratamientos(
+	id_tratamientos INT NOT NULL,
+	nombre VARCHAR(20) NOT NULL,
+	estatus VARCHAR(15) NOT NULL,
+	descripcion VARCHAR(80) NOT NULL,
+PRIMARY KEY (id_tratamientos));
 
-create table productos(
-    id_producto int not null,
-    nombre varchar(50),
-    marca varchar(50),
-    precio varchar(50),
-    estatus bool,
-    primary key (id_producto
-));
+CREATE TABLE Productos(
+    id_producto INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    marca VARCHAR(50) NOT NULL,
+    precio VARCHAR(50) NOT NULL,
+    estatus BOOL NOT NULL,
+    PRIMARY KEY (id_producto)
+);
 
 
-create table tratamientos_servicio(
-    id_tratamientos_servicios int not null,
-    costo varchar(45)
+CREATE TABLE Tratamientos_servicio(
+    id_tratamientos_servicios INT NOT NULL,
+    costo VARCHAR(45) NOT NULL,
+    PRIMARY KEY (id_tratamientos_servicios)
 );
