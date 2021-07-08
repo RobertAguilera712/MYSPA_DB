@@ -83,7 +83,6 @@ estatus bool,
 primary key (sucursales)
 );
 
-<<<<<<< HEAD
 create table servicio(
 id_servicio int not null,
 fecha date not null,
