@@ -14,7 +14,7 @@ CREATE TABLE Persona(
 	ciudad VARCHAR(50) NOT NULL,
 	codigo_postal VARCHAR(5) NOT NULL,
 	estatus BOOL,
-	PRIMARY KEY (id_perosna)
+	PRIMARY KEY (id_persona)
 );
 
 CREATE TABLE Empleado(
@@ -61,13 +61,6 @@ estatus varchar(15),
 primary key (id_reservacion)
 );
 
-create table sala_horario(
-id_sala_horario int not null,
-id_sala int not null,
-id_horario int not null,
-primary key (id_sala_horario)
-);
-
 create table horarios(
 id_horario int not null,
 hora_termino time,
@@ -80,14 +73,15 @@ id_sucursal int not null,
 latitud double,
 longitud double,
 estatus bool,
-primary key (sucursales)
+primary key (id_sucursal)
 );
 
 create table servicio(
 id_servicio int not null,
 fecha date not null,
 costo int not null,
-primary key (id_sucursal));
+primary key (id_servicio)
+);
 
 create table tratamientos(
 id_tratamientos int not null,
@@ -110,4 +104,3 @@ create table tratamientos_servicio(
     id_tratamientos_servicios int not null,
     costo varchar(45)
 );
-
