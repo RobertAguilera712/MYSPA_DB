@@ -55,5 +55,17 @@ longitud double,
 estatus bool 
 );
 
+create table productos(
+    id_producto int not null,
+    nombre varchar(50),
+    marca varchar(50),
+    precio varchar(50),
+    estatus bool,
+    primary key id_producto
+);
 
+create table tratamientos_servicio(
+    id_tratamientos_servicios int not null,
+    costo varchar(45)
+);
 
