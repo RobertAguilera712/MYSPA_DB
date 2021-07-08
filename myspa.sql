@@ -64,7 +64,8 @@ primary key (id_reservacion)
 create table sala_horario(
 id_sala_horario int not null,
 id_sala int not null,
-id_horario int not null
+id_horario int not null,
+primary key (id_sala_horario)
 );
 
 create table horarios(
@@ -78,7 +79,8 @@ create table sucursales(
 id_sucursal int not null,
 latitud double,
 longitud double,
-estatus bool 
+estatus bool,
+primary key (sucursales)
 );
 
 
