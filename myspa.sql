@@ -83,5 +83,17 @@ estatus bool,
 primary key (sucursales)
 );
 
+create table servicio(
+id_servicio int not null,
+fecha date not null,
+costo int not null,
+primary key (id_sucursal));
+
+create table tratamientos(
+id_tratamientos int not null,
+nombre varchar(20) not null,
+estatus varchar(15),
+descripcion varchar(80) not null,
+primary key (id_tratamientos));
 
 
