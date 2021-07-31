@@ -3,26 +3,34 @@ CREATE DATABASE myspa;
 USE myspa;
 
 CREATE TABLE persona(
-    id_persona INT NOT NULL,
-    nombre VARCHAR(50) NOT NULL,
-    apellido_paterno VARCHAR(50) NOT NULL,
-    apellido_materno VARCHAR(50) NOT NULL,
-    genero VARCHAR(10) NOT NULL,
-    rfc VARCHAR(13) NOT NULL,
-    calle VARCHAR(50) NOT NULL,
-    colonia VARCHAR(50) NOT NULL,
-    ciudad VARCHAR(50) NOT NULL,
-    codigo_postal VARCHAR(5) NOT NULL,
-    estatus BOOL NOT NULL,
-    CONSTRAINT persona_id_persona_pk PRIMARY KEY (id_persona)
+    id_persona INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL DEFAULT "",
+    apellido_paterno VARCHAR(50) NOT NULL DEFAULT "",
+    apellido_materno VARCHAR(50) NOT NULL DEFAULT "",
+    genero VARCHAR(2) NOT NULL DEFAULT "0",
+    rfc VARCHAR(14) NOT NULL DEFAULT "",
+    domicilio VARCHAR(200) NOT NULL DEFAULT "",
+    telefono VARCHAR(25) NOT NULL DEFAULT ""
 );
 
 CREATE TABLE usuario(
-    id_usuario INT NOT NULL,
+    id_usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
-    contraseña VARCHAR(50) NOT NULL,
-    rol VARCHAR(50) NOT NULL,
-    CONSTRAINT usuario_id_usuario_pk PRIMARY KEY (id_usuario)
+    contrasenia VARCHAR(50) NOT NULL DEFAULT "",
+    rol VARCHAR(25) NOT NULL DEFAULT ""
+);
+
+CREATE TABLE empleado(
+    id_empleado INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    num_empleado VARCHAR(50),
+    fotografia LONGTEXT,
+    ruta_fotografia TEXT,
+    puesto VARCHAR(25) NOT NULL,
+    estatus INT NOT NULL DEFAULT "",
+    id_persona INT NOT NULL,
+    id_usuario INT NOT NULL,
+    CONSTRAINT fk_empleado_persona FOREIGN KEY (id_persona) REFERENCES persona(id_persona) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_empleado_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE sucursal(
@@ -57,22 +65,7 @@ CREATE TABLE producto(
     CONSTRAINT producto_id_producto_pk PRIMARY KEY (id_producto)
 );
 
-CREATE TABLE empleado(
-    id_empleado INT NOT NULL,
-    num_empleado VARCHAR(50) NOT NULL,
-    fotografia BLOB NOT NULL,
-    ruta_fotografia VARCHAR(50) NOT NULL,
-    puesto VARCHAR(50) NOT NULL,
-    estatus BOOL NOT NULL,
-    fecha_contratacion DATE NOT NULL,
-    id_persona INT NOT NULL,
-    id_usuario INT NOT NULL,
-    CONSTRAINT empleado_id_empelado_pk PRIMARY KEY (id_empleado),
-    CONSTRAINT empleado_id_persona_uq UNIQUE (id_persona),
-    CONSTRAINT empleado_id_usuario_uq UNIQUE (id_usuario),
-    CONSTRAINT empleado_id_persona_fk1 FOREIGN KEY (id_persona) REFERENCES persona (id_persona),
-    CONSTRAINT empleado_id_usuario_fk2 FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
-);
+
 
 
 CREATE TABLE cliente(
