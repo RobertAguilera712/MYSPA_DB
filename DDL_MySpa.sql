@@ -66,46 +66,51 @@ CREATE TABLE sucursal(
     longitud DOUBLE NOT NULL DEFAULT 0.0,
     estatus INT NOT NULL DEFAULT 1
 );
---Sin terminar
+
 CREATE TABLE sala(
     id_sala INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(20) NOT NULL DEFAULT "",
-    descripcion VARCHAR(80) NOT NULL,
-    fotografia BLOB NOT NULL,
-    estatus BOOL NOT NULL,
-    ruta_fotografia VARCHAR(30) NOT NULL,
+    descripcion TEXT,
+    fotografia LONGTEXT,
+    estatus INT NOT NULL DEFAULT 1,
+    ruta_fotografia TEXT,
     id_sucursal INT NOT NULL,
-    CONSTRAINT sala_id_sucursal_fk1 FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal)
+    CONSTRAINT fk_sala_sucursal FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE horario(
-    id_horario INT NOT NULL,
-    hora_termino TIME NOT NULL,
-    hora_inicio TIME NOT NULL,
-    CONSTRAINT horario_id_horario_pk PRIMARY KEY (id_horario)
+    id_horario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    hora_termino VARCHAR(6),
+    hora_inicio VARCHAR(6),
 );
 
-CREATE TABLE servicio(
-    id_servicio INT NOT NULL,
-    costo INT NOT NULL,
-    id_empleado INT NOT NULL,
-    CONSTRAINT servicio_id_servicio_pk PRIMARY KEY (id_servicio),
-    CONSTRAINT servicio_id_empleado_fk1 FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
+CREATE TABLE sala_horario(
+    id_horario INT NOT NULL,
+    id_sala INT NOT NULL,
+    CONSTRAINT fk_sala_horario_horario FOREIGN KEY (id_horario) REFERENCES horario (id_horario),
+    CONSTRAINT fk_sala_horario_sala FOREIGN KEY (id_sala) REFERENCES sala (id_sala)
 );
 
 CREATE TABLE reservacion(
-    id_reservacion INT NOT NULL,
-    fecha DATE NOT NULL,
-    estatus VARCHAR(15) NOT NULL,
+    id_reservacion INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    fecha DATETIME,
+    estatus INT,
     id_cliente INT NOT NULL,
     id_servicio INT NOT NULL,
     id_sala INT NOT NULL,
-    CONSTRAINT reservacion_id_reservacion_pk PRIMARY KEY (id_reservacion),
-    CONSTRAINT reservacion_id_servicio_uq UNIQUE (id_servicio),
-    CONSTRAINT reservacion_id_sala_uq UNIQUE (id_sala),
-    CONSTRAINT reservacion_id_cliente_fk1 FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
-    CONSTRAINT reservacion_id_servicio_fk2 FOREIGN KEY (id_servicio) REFERENCES servicio (id_servicio),
-    CONSTRAINT reservacion_id_sala_fk3 FOREIGN KEY (id_sala) REFERENCES sala (id_sala)
+    CONSTRAINT fk_reservacion_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
+    CONSTRAINT fk_reservacion_servicio FOREIGN KEY (id_servicio) REFERENCES servicio (id_servicio),
+    CONSTRAINT fk_reservacion_sala FOREIGN KEY (id_sala) REFERENCES sala (id_sala)
+);
+--ajksaj
+CREATE TABLE servicio(
+    id_servicio INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    fecha DATETIME NOT NULL,
+    costo DOUBLE NOT NULL DEFAULT 0.0,
+    id_empleado INT NOT NULL,
+    id_reservacion INT NOT NULL,
+    CONSTRAINT fk_servicio_empleado FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado),
+    CONSTRAINT fk_servicio_reservacion 
 );
 
 CREATE TABLE tratamiento_servicio(
@@ -118,13 +123,4 @@ CREATE TABLE tratamiento_servicio(
     CONSTRAINT tratamiento_servicio_id_servicio_fk1 FOREIGN KEY (id_servicio) REFERENCES servicio (id_servicio),
     CONSTRAINT tratamiento_servicio_id_tratamiento_fk2 FOREIGN KEY (id_tratamiento) REFERENCES tratamiento (id_tratamiento),
     CONSTRAINT tratamiento_servicio_id_producto_fk2 FOREIGN KEY (id_producto) REFERENCES producto (id_producto)
-);
-
-CREATE TABLE sala_horario(
-    id_sala_horario INT NOT NULL,
-    id_horario INT NOT NULL,
-    id_sala INT NOT NULL,
-    CONSTRAINT sala_horario_id_sala_horario_pk PRIMARY KEY (id_sala_horario),
-    CONSTRAINT sala_horario_id_horario_fk1 FOREIGN KEY (id_horario) REFERENCES horario (id_horario),
-    CONSTRAINT sala_horario_id_sala_fk2 FOREIGN KEY (id_sala) REFERENCES sala (id_sala)
 );
