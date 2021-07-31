@@ -33,12 +33,49 @@ CREATE TABLE empleado(
     CONSTRAINT fk_empleado_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE cliente(
+    id_cliente INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    correo VARCHAR(50) NOT NULL DEFAULT "",
+    num_unico_cliente VARCHAR(50) NOT NULL,
+	estatus INT NOT NULL DEFAULT 1,
+    id_persona INT NOT NULL,
+    id_usuario INT NOT NULL,
+    CONSTRAINT fk_cliente_persona FOREIGN KEY (id_persona) REFERENCES persona (id_persona) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_cliente_usuario FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE producto(
+    id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL DEFAULT "",
+    marca VARCHAR(50) NOT NULL DEFAULT "",
+    precio_uso FLOAT NOT NULL DEFAULT 0.0,
+    estatus INT NOT NULL
+);
+
+CREATE TABLE tratamiento(
+    id_tratamiento INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL,
+    descripcion VARCHAR(80) NOT NULL,
+);
+
 CREATE TABLE sucursal(
-    id_sucursal INT NOT NULL,
-    latitud DOUBLE NOT NULL,
-    longitud DOUBLE NOT NULL,
+    id_sucursal INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nombre VARCHAR(50) NOT NULL DEFAULT "",
+	domicilio VARCHAR(200)
+    latitud DOUBLE NOT NULL DEFAULT 0.0,
+    longitud DOUBLE NOT NULL DEFAULT 0.0,
+    estatus INT NOT NULL DEFAULT 1
+);
+--Sin terminar
+CREATE TABLE sala(
+    id_sala INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL DEFAULT "",
+    descripcion VARCHAR(80) NOT NULL,
+    fotografia BLOB NOT NULL,
     estatus BOOL NOT NULL,
-    CONSTRAINT sucursal_id_sucursal_pk PRIMARY KEY (id_sucursal)
+    ruta_fotografia VARCHAR(30) NOT NULL,
+    id_sucursal INT NOT NULL,
+    CONSTRAINT sala_id_sucursal_fk1 FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal)
 );
 
 CREATE TABLE horario(
@@ -48,57 +85,12 @@ CREATE TABLE horario(
     CONSTRAINT horario_id_horario_pk PRIMARY KEY (id_horario)
 );
 
-CREATE TABLE tratamiento(
-    id_tratamiento INT NOT NULL,
-    nombre VARCHAR(20) NOT NULL,
-    estatus VARCHAR(15) NOT NULL,
-    descripcion VARCHAR(80) NOT NULL,
-    CONSTRAINT tratamiento_id_tratamiento_pk PRIMARY KEY (id_tratamiento)
-);
-
-CREATE TABLE producto(
-    id_producto INT NOT NULL,
-    nombre VARCHAR(50) NOT NULL,
-    marca VARCHAR(50) NOT NULL,
-    precio VARCHAR(50) NOT NULL,
-    estatus BOOL NOT NULL,
-    CONSTRAINT producto_id_producto_pk PRIMARY KEY (id_producto)
-);
-
-
-
-
-CREATE TABLE cliente(
-    id_cliente INT NOT NULL,
-    correo VARCHAR(50) NOT NULL,
-    num_unico_cliente VARCHAR(50) NOT NULL,
-    id_persona INT NOT NULL,
-    id_usuario INT NOT NULL,
-    CONSTRAINT cliente_id_cliente_pk PRIMARY KEY (id_cliente),
-    CONSTRAINT cliente_id_persona_uq UNIQUE (id_persona),
-    CONSTRAINT cliente_id_usuario_uq UNIQUE (id_usuario),
-    CONSTRAINT cliente_id_persona_fk1 FOREIGN KEY (id_persona) REFERENCES persona (id_persona),
-    CONSTRAINT cliente_id_usuario_fk2 FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario)
-);
-
 CREATE TABLE servicio(
     id_servicio INT NOT NULL,
     costo INT NOT NULL,
     id_empleado INT NOT NULL,
     CONSTRAINT servicio_id_servicio_pk PRIMARY KEY (id_servicio),
     CONSTRAINT servicio_id_empleado_fk1 FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
-);
-
-CREATE TABLE sala(
-    id_sala INT NOT NULL,
-    nombre VARCHAR(20) NOT NULL,
-    descripcion VARCHAR(80) NOT NULL,
-    fotografia BLOB NOT NULL,
-    estatus BOOL NOT NULL,
-    ruta_fotografia VARCHAR(30) NOT NULL,
-    id_sucursal INT NOT NULL,
-    CONSTRAINT sala_id_sala_pk PRIMARY KEY (id_sala),
-    CONSTRAINT sala_id_sucursal_fk1 FOREIGN KEY (id_sucursal) REFERENCES sucursal (id_sucursal)
 );
 
 CREATE TABLE reservacion(
