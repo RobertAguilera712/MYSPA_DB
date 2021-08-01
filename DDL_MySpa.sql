@@ -87,8 +87,8 @@ CREATE TABLE horario(
 CREATE TABLE sala_horario(
     id_horario INT NOT NULL,
     id_sala INT NOT NULL,
-    CONSTRAINT fk_sala_horario_horario FOREIGN KEY (id_horario) REFERENCES horario (id_horario),
-    CONSTRAINT fk_sala_horario_sala FOREIGN KEY (id_sala) REFERENCES sala (id_sala)
+    CONSTRAINT fk_sala_horario_horario FOREIGN KEY (id_horario) REFERENCES horario (id_horario) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_sala_horario_sala FOREIGN KEY (id_sala) REFERENCES sala (id_sala) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE reservacion(
@@ -96,31 +96,34 @@ CREATE TABLE reservacion(
     fecha DATETIME,
     estatus INT,
     id_cliente INT NOT NULL,
-    id_servicio INT NOT NULL,
     id_sala INT NOT NULL,
-    CONSTRAINT fk_reservacion_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
-    CONSTRAINT fk_reservacion_servicio FOREIGN KEY (id_servicio) REFERENCES servicio (id_servicio),
-    CONSTRAINT fk_reservacion_sala FOREIGN KEY (id_sala) REFERENCES sala (id_sala)
+    CONSTRAINT fk_reservacion_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_reservacion_sala FOREIGN KEY (id_sala) REFERENCES sala (id_sala) ON DELETE CASCADE ON UPDATE CASCADE
 );
 --ajksaj
 CREATE TABLE servicio(
     id_servicio INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     fecha DATETIME NOT NULL,
-    costo DOUBLE NOT NULL DEFAULT 0.0,
+    costo FLOAT NOT NULL DEFAULT 0.0,
     id_empleado INT NOT NULL,
     id_reservacion INT NOT NULL,
-    CONSTRAINT fk_servicio_empleado FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado),
-    CONSTRAINT fk_servicio_reservacion 
+    CONSTRAINT fk_servicio_empleado FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_servicio_reservacion FOREIGN KEY (id_reservacion) REFERENCES reservacion(id_reservacion) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE tratamiento_servicio(
-    id_tratamiento_servicio INT NOT NULL,
+    id_tratamiento_servicio INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     costo VARCHAR(45) NOT NULL,
     id_servicio INT NOT NULL,
     id_tratamiento INT NOT NULL,
-    id_producto INT NOT NULL,
-    CONSTRAINT tratamiento_servicio_id_tratamiento_servicio PRIMARY KEY (id_tratamiento_servicio),
-    CONSTRAINT tratamiento_servicio_id_servicio_fk1 FOREIGN KEY (id_servicio) REFERENCES servicio (id_servicio),
-    CONSTRAINT tratamiento_servicio_id_tratamiento_fk2 FOREIGN KEY (id_tratamiento) REFERENCES tratamiento (id_tratamiento),
-    CONSTRAINT tratamiento_servicio_id_producto_fk2 FOREIGN KEY (id_producto) REFERENCES producto (id_producto)
+    CONSTRAINT fk_tratamiento_servicio_servicio FOREIGN KEY (id_servicio) REFERENCES servicio (id_servicio) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_tratamiento_servicio_tratamiento FOREIGN KEY (id_tratamiento) REFERENCES tratamiento (id_tratamiento) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE tratamiento_servicio_producto(
+    id_tratamiento_servicio INT NOT NULL,
+    id_producto INT NOT NULL,
+    precio_uso FLOAT NOT NULL DEFAULT 0.0,
+    CONSTRAINT fk_tratamiento_servicio_producto_tratamiento_servicio FOREIGN KEY (id_tratamiento_servicio) REFERENCES tratamiento_servicio(id_tratamiento_servicio) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_tratamiento_servicio_producto_producto FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE CASCADE ON UPDATE CASCADE
+)
