@@ -100,7 +100,7 @@ CREATE TABLE reservacion(
     CONSTRAINT fk_reservacion_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_reservacion_sala FOREIGN KEY (id_sala) REFERENCES sala (id_sala) ON DELETE CASCADE ON UPDATE CASCADE
 );
---ajksaj
+
 CREATE TABLE servicio(
     id_servicio INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     fecha DATETIME NOT NULL,
