@@ -5,7 +5,7 @@ INSERT INTO persona(nombre, apellido_paterno, apellido_materno, domicilio, telef
 ("Carla","Yépez","Pola","Tralera #121", "4779821212", "YEPC000823UTD"),
 ("Martha","Vargas","Olla","Roles #234", "4771293201", "VAOM941104IOP"),
 ("Walter","Jiménez","Roa","Pinos #999", "4779201921", "JIRW981213OIA"),
-("Tamara","Veláquez","Parra","Camino Real #333", "4772182911", "TEVN861210IUY"),
+("Tamara","Veláquez","Parra","Romero #192", "4779201212", "VEPT881204ORP"),
 ("Norma","Terrones","Vázquez","Camino Real #333", "4772182911", "TEVN861210IUY"),
 ("Osmar","Padilla","Sepia","Delta #452", "4775247152", "PASO020221NJS");
 
@@ -20,8 +20,17 @@ INSERT INTO usuario(nombre, contrasenia, rol) VALUES("alih","tra12","Administrad
 ("paia","asj23","Cliente"),
 ("wiiu","laskl21","Cliente");
 
-INSERT INTO empleado(num_empleado, puesto, estatus, fotografia, ruta_fotografia, id_persona, id_usuario) VALUES("EVEPC20210801","Gerente",1,"","",1,3),
-("EVEPC20210801","Gerente",1,"","",1,1),
-("EVEPC20210801","Gerente",1,"","",1,1),
-("EVEPC20210801","Gerente",1,"","",1,1),
-("EVEPC20210801","Gerente",1,"","",1,1);
+INSERT INTO empleado(num_empleado, puesto, estatus, fotografia, ruta_fotografia, id_persona, id_usuario) VALUES("EVEPC20210801","Gerente",1,"","",1,1),
+("EROMM20210801","Recepcionista",1,"","",2,2),
+("ECODP20210801","Técnico",1,"","",3,3),
+("ELOAR20210801","Técnico",1,"","",4,4),
+("EYEPC20210801","Técnico",1,"","",5,5);
+
+INSERT INTO cliente(num_unico_cliente, correo, estatus, id_persona, id_usuario) VALUES("VAOM20210801","mar102@gmail.com",6,6,6),
+("JIRW20210801","walterbig@gmail.com",7,7,7),
+("VEPT20210801","tamatama@gmail.com",8,8,8),
+("TEVN20210801","nonoterrones@gmail.com",9,9,9),
+("PASO20210801","padilla12312@gmail.com",10,10,10);
+
+INSERT INTO sucursal(nombre, domicilio, longitud, latitud, estatus) VALUES("")
+
