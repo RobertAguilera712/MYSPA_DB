@@ -32,5 +32,18 @@ INSERT INTO cliente(num_unico_cliente, correo, estatus, id_persona, id_usuario) 
 ("TEVN20210801","nonoterrones@gmail.com",9,9,9),
 ("PASO20210801","padilla12312@gmail.com",10,10,10);
 
-INSERT INTO sucursal(nombre, domicilio, longitud, latitud, estatus) VALUES("")
+INSERT INTO sucursal(nombre, domicilio, longitud, latitud, estatus) VALUES("Sucursal Centro","Belizario Dominguez, #418, Col. Centro",-101.682636, 21.12117),
+("Sucursal Arbide","Puerto Rico, #418, Col. Arbide",-101.696867, 21.123116),
+("Sucursal Villa Insurgentes","Ignacio Pérez, #403, Col. Villa Insurgentes",-101.682901, 21.190017);
 
+INSERT INTO sala(nombre, descripcion, fotografia, ruta_fotografia, estatus, id_sucursal) VALUES("Nature","Sala que te llevará a una calma total, centrada completamente en productos naturistas","","",1,1),
+("Aqua","Sala que te transportará a una profunda relajación, el tema principal de la sala es el agua","","",1,3),
+("Meditation","Sala con una vibra muy baja para aquellos que quieren relajarse, nuestros especialistas lo guiarán por una profunda meditación","","",1,2),
+("Balance","La sala más activa de todas, aquí activarás tu cuerpo, éste se sentira más vivo que nunca. Diversas mecánica de activación te llevará a descubrir que tu físico es genial","","",1,3),
+("Peace","Sala centrada en el amor propio, en esta sala harás una introspección y te encontrarás contigo mismo","","",1,1);
+
+INSERT INTO producto(nombre, marca, estatus, precio_uso) VALUES("Aceite de Albahaca","healths",1,"25"),
+("Aceite de Coco","healths",1,"25"),
+("Aceite de argán","healths",1,"35"),
+("Velas aromáticas","wald",1,"25"),
+("Aceite esencial de Cardamomo","healths",1,"25");
