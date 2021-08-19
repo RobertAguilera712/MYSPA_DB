@@ -54,7 +54,7 @@ CREATE TABLE producto(
 
 CREATE TABLE tratamiento(
     id_tratamiento INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(20) NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
     descripcion VARCHAR(255) NOT NULL
 );
 
