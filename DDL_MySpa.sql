@@ -55,13 +55,13 @@ CREATE TABLE producto(
 CREATE TABLE tratamiento(
     id_tratamiento INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(20) NOT NULL,
-    descripcion VARCHAR(80) NOT NULL,
+    descripcion VARCHAR(80) NOT NULL
 );
 
 CREATE TABLE sucursal(
     id_sucursal INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR(50) NOT NULL DEFAULT "",
-	domicilio VARCHAR(200)
+	domicilio VARCHAR(200),
     latitud DOUBLE NOT NULL DEFAULT 0.0,
     longitud DOUBLE NOT NULL DEFAULT 0.0,
     estatus INT NOT NULL DEFAULT 1
@@ -81,7 +81,7 @@ CREATE TABLE sala(
 CREATE TABLE horario(
     id_horario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     hora_termino VARCHAR(6),
-    hora_inicio VARCHAR(6),
+    hora_inicio VARCHAR(6)
 );
 
 CREATE TABLE sala_horario(
@@ -126,4 +126,4 @@ CREATE TABLE tratamiento_servicio_producto(
     precio_uso FLOAT NOT NULL DEFAULT 0.0,
     CONSTRAINT fk_tratamiento_servicio_producto_tratamiento_servicio FOREIGN KEY (id_tratamiento_servicio) REFERENCES tratamiento_servicio(id_tratamiento_servicio) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_tratamiento_servicio_producto_producto FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
