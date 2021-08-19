@@ -26,7 +26,7 @@ CREATE TABLE empleado(
     fotografia LONGTEXT,
     ruta_fotografia TEXT,
     puesto VARCHAR(25) NOT NULL,
-    estatus INT NOT NULL DEFAULT "",
+    estatus INT NOT NULL DEFAULT 1,
     id_persona INT NOT NULL,
     id_usuario INT NOT NULL,
     CONSTRAINT fk_empleado_persona FOREIGN KEY (id_persona) REFERENCES persona(id_persona) ON DELETE CASCADE ON UPDATE CASCADE,
