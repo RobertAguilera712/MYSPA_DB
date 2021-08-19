@@ -32,7 +32,7 @@ INSERT INTO cliente(num_unico_cliente, correo, estatus, id_persona, id_usuario) 
 ("TEVN20210801","nonoterrones@gmail.com",9,9,9),
 ("PASO20210801","padilla12312@gmail.com",10,10,10);
 
-INSERT INTO sucursal(nombre, domicilio, longitud, latitud, estatus) VALUES("Sucursal Centro","Belizario Dominguez, #418, Col. Centro",-101.682636, 21.12117),
+INSERT INTO sucursal(nombre, domicilio, longitud, latitud) VALUES("Sucursal Centro","Belizario Dominguez, #418, Col. Centro",-101.682636, 21.12117),
 ("Sucursal Arbide","Puerto Rico, #418, Col. Arbide",-101.696867, 21.123116),
 ("Sucursal Villa Insurgentes","Ignacio Pérez, #403, Col. Villa Insurgentes",-101.682901, 21.190017);
 
@@ -50,7 +50,7 @@ INSERT INTO producto(nombre, marca, estatus, precio_uso) VALUES("Aceite de Albah
 
 INSERT INTO tratamiento(nombre, descripcion) VALUES("Aromaterapia","Descansa mientras inhalas esencias naturales que te llevarán a otro nivel de relajación"),
 ("Circuito de aguas","En un circuito de aguas, el cliente pasa por diferentes chorros de agua que se encuentran a diferentes temperaturas y que sirven para hidratar la piel y para relajar todo el cuerpo."),
-("Masajes","Los masajes terapéuticos se realizan con el objetivo de curar problemas musculares, y por lo tanto tienen un objetivo médico y deben de ser realizados por fisioterapeutas titulados. Normalmente al terminar el masaje dejan el cuerpo dolorido, pero la mejoría muscular se empieza a notar tan pronto el dolor inicial desaparece."),
+("Masajes","Los masajes terapéuticos se realizan con el objetivo de curar problemas musculares, y por lo tanto tienen un objetivo médico y deben de ser realizados por fisioterapeutas titulados."),
 ("Ducha de sensaciones","Es una combinación del masaje tradicional con bastantes incorporaciones de esencias aromáticas, así como otros elementos de la naturaleza. Déjate llevar por una ducha de miles de sensaciones."),
-("Tratamiento de belleza","Existen diferentes tratamientos de belleza en los Spa, en los que la mayoría pretende mejorar la apariencia de la piel, eliminando arrugas y dando un aspecto mucho más rejuvenecido a la piel. Para este tipo de tratamientos, suelen utilizarse diferentes productos naturales.");
+("Tratamiento de belleza","Existen diferentes tratamientos de belleza en los Spa, en los que la mayoría pretende mejorar la apariencia de la piel, eliminando arrugas y dando un aspecto mucho más rejuvenecido a la piel");
 
