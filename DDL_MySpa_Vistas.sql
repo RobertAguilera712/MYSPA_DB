@@ -54,5 +54,5 @@ CREATE VIEW v_empleados AS
   FROM persona P
   INNER JOIN cliente C ON C.id_persona = P.id_persona
   INNER JOIN reservacion R ON R.id_cliente = C.id_cliente
-  INNER JOIN sala S ON S.id_sala = R-id_sala;
+  INNER JOIN sala S ON S.id_sala = R.id_sala;
   
